@@ -1,10 +1,15 @@
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
 
-const sequelize = new Sequelize("snapserve", "root", process.env.db, {
-  host: process.env.HOST,
-  dialect: "mysql",
-});
+const sequelize = new Sequelize(
+  process.env.NOMBRE_DB,
+  process.env.NOMBRE_USUARIO,
+  process.env.db,
+  {
+    host: process.env.HOST,
+    dialect: "mysql",
+  }
+);
 
 const connect = async () => {
   try {
