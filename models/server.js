@@ -7,6 +7,10 @@ class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT;
+    this.allowedOrigins = [
+      "https://snapserve-c9937.web.app",
+      "https://snapserve-c9937.firebaseapp.com",
+    ];
 
     this.paths = {
       auth: "/api/auth",
@@ -32,7 +36,11 @@ class Server {
   }
 
   middlewares() {
-    this.app.use(cors());
+    this.app.use(
+      cors({
+        origin: this.allowedOrigins,
+      })
+    );
 
     this.app.use(express.json());
 
